@@ -1,0 +1,3 @@
+# Onne Store RD — Netlify redirects
+# Hash routing works without this, but it's here as fallback
+/*    /index.html   200

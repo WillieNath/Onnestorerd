@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Onne Store RD — Perfumes Originales | República Dominicana</title>
+<meta content="Perfumes originales con envío a toda República Dominicana. Marcas premium, precios accesibles. Pago por WhatsApp. ¡+500 clientes satisfechos!" name="description"/>
+<meta name="keywords" content="perfumes originales, perfumes dominicana, perfumes RD, tienda perfumes, perfumes mujer, perfumes hombre"/>
+<meta name="theme-color" content="#C9A96E"/>
+<!-- Open Graph -->
+<meta property="og:title" content="Onne Store RD — Perfumes Originales"/>
+<meta property="og:description" content="Perfumes originales con envío a toda República Dominicana."/>
+<meta property="og:type" content="website"/>
+<meta property="og:locale" content="es_DO"/>
+<!-- Preconnect para fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link href="styles.css" rel="stylesheet"/>
+<link href="v88-styles.css" rel="stylesheet"/>
+<link href="v89-responsive.css" rel="stylesheet"/>
+<!-- Leaflet Maps -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Store",
+  "name": "Onne Store RD",
+  "description": "Tienda de perfumes originales en República Dominicana",
+  "url": "https://onnestore.rd",
+  "sameAs": [],
+  "priceRange": "RD$$",
+  "currenciesAccepted": "DOP",
+  "paymentAccepted": "WhatsApp transfer",
+  "areaServed": "Dominican Republic"
+}
+</script>
+<body>
+
+<div id="loader">
+  <div class="loader-brand">ONNE <em style="font-style:normal;color:var(--gold)">STORE</em></div>
+  <div class="loader-dots"><i></i><i></i><i></i></div>
+</div>
+
+<div class="announce-bar" id="topbar">...</div>
+<div class="ticker-bar" id="ticker-bar" hidden><div class="ticker-track" id="ticker-track"></div></div>
+
+<header class="site-header" id="site-header">
+  <div class="header-inner">
+    <a class="header-logo" href="#home" id="brandLink">
+      <img id="headerLogoImg" alt="Logo"/>
+      <span class="brandText">ONNE <em>STORE</em></span>
+    </a>
+    <nav class="header-nav" id="header-nav"></nav>
+    <div class="header-actions">
+      <a class="hbtn hbtn-search" href="#shop" title="Buscar">
+        <svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="18"><circle cx="11" cy="11" r="8"></circle><line x1="21" x2="16.65" y1="21" y2="16.65"></line></svg>
+      </a>
+      <a class="hbtn cart-btn" href="#cart" title="Carrito">
+        <svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="18"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"></path><line x1="3" x2="21" y1="6" y2="6"></line><path d="M16 10a4 4 0 01-8 0"></path></svg>
+        <span class="cart-badge" id="cart-badge">0</span>
+      </a>
+      <a class="hbtn-wa" href="#" id="header-wa-btn" rel="noopener" target="_blank">Comprar</a>
+      <button class="hbtn" id="darkmode-toggle" title="Cambiar modo claro/oscuro" aria-label="Modo oscuro" style="flex-shrink:0">
+        <svg id="dm-icon-moon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        <svg id="dm-icon-sun" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
+      <button aria-label="Menú" class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<nav class="mobile-nav" id="mobile-nav"></nav>
+<div class="toast-wrap" id="toast-wrap"></div>
+
+<!-- HOME -->
+<div class="page active" id="page-home">
+  <section class="hero">
+    <img alt="Perfumes" class="hero-img" id="hero-img" src=""/>
+    <div class="hero-content">
+      <div class="hero-inner">
+        <div class="hero-label"></div>
+        <h1 class="hero-title"></h1>
+        <p class="hero-desc"></p>
+        <div class="hero-ctas"></div>
+      </div>
+    </div>
+    <!-- Proof bar — anchored to hero bottom (desktop) -->
+    <div class="hero-proof-bar" id="hero-proof-bar"></div>
+    <!-- Explorar button -->
+    <a class="hero-scroll" id="hero-scroll-btn" href="#shop">
+      <span class="hero-scroll-label" id="hero-scroll-label">Explorar</span>
+      <div class="hero-scroll-chevrons">
+        <svg width="26" height="15" viewBox="0 0 26 15" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,2 13,13 24,2"/></svg>
+        <svg width="26" height="15" viewBox="0 0 26 15" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,2 13,13 24,2"/></svg>
+        <svg width="26" height="15" viewBox="0 0 26 15" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,2 13,13 24,2"/></svg>
+      </div>
+    </a>
+    <!-- MOBILE ONLY: capa independiente dentro del hero con elementos individualmente posicionados -->
+    <div class="hero-mob-layer" id="hero-mob-layer">
+      <div class="hero-mob-el" id="hero-mob-title"></div>
+      <div class="hero-mob-el" id="hero-mob-desc"></div>
+      <a  class="hero-mob-el hero-mob-circle" id="hero-mob-btn1" aria-label="Catálogo"></a>
+      <a  class="hero-mob-el hero-mob-circle" id="hero-mob-btn2" target="_blank" rel="noopener" aria-label="WhatsApp"></a>
+      <a  class="hero-mob-el hero-mob-circle hero-mob-circle--ig" id="hero-mob-btn3" target="_blank" rel="noopener" aria-label="Instagram" style="display:none"></a>
+      <div class="hero-mob-el hero-mob-proof-bar" id="hero-mob-proof"></div>
+    </div>
+  </section>
+
+  <div class="features-strip section-sm" id="features-strip">
+    <div class="container">
+      <div class="features-grid" id="features-grid">
+        <div class="feature-item"><div class="feature-icon">✓</div><div><div class="feature-name">100% Originales</div><div class="feature-desc">Garantía de autenticidad</div></div></div>
+        <div class="feature-item"><div class="feature-icon">🚚</div><div><div class="feature-name">Envío Nacional</div><div class="feature-desc">Todo el país</div></div></div>
+        <div class="feature-item"><div class="feature-icon">💬</div><div><div class="feature-name">WhatsApp</div><div class="feature-desc">Atención rápida</div></div></div>
+        <div class="feature-item"><div class="feature-icon">♥</div><div><div class="feature-name">Personalizado</div><div class="feature-desc">Te asesoramos</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <section class="section" data-section-id="new" id="home-section-new">
+    <div class="container">
+      <div class="sec-header">
+        <div><div class="eyebrow">Recién llegados</div><h2 class="sec-title">Novedades</h2></div>
+        <a class="btn btn-outline btn-sm" href="#shop">Ver todos →</a>
+      </div>
+      <div class="products-grid" id="home-new-grid"></div>
+    </div>
+  </section>
+
+  <section class="section" data-section-id="best" id="home-section-best">
+    <div class="container">
+      <div class="sec-header">
+        <div><div class="eyebrow">Los favoritos</div><h2 class="sec-title">Más <em>Vendidos</em></h2></div>
+        <a class="btn btn-outline btn-sm" href="#shop">Ver catálogo →</a>
+      </div>
+      <div class="products-grid" id="home-best-grid"></div>
+    </div>
+  </section>
+
+  <section class="section" data-section-id="offers" id="home-offers-section">
+    <div class="container">
+      <div class="sec-header">
+        <div><div class="eyebrow">No te lo pierdas</div><h2 class="sec-title">Ofertas <em>Especiales</em></h2></div>
+        <a class="btn btn-outline btn-sm" href="#offers">Ver todas →</a>
+      </div>
+      <div class="products-grid" id="home-offers-grid"></div>
+    </div>
+  </section>
+
+  <section class="section" data-section-id="testimonials" id="home-section-testimonials">
+    <div class="container">
+      <div class="sec-header" style="justify-content:center;text-align:center;flex-direction:column;align-items:center">
+        <div class="eyebrow">Opiniones reales</div>
+        <h2 class="sec-title">Lo que dicen <em>nuestros clientes</em></h2>
+      </div>
+      <div class="testimonials-grid" id="home-testi-grid"></div>
+      <div class="testi-form-wrap">
+        <div class="testi-form-card">
+          <h3>Deja tu opinión</h3>
+          <p class="muted">Tu comentario se publicará luego de revisión.</p>
+          <form id="testi-form">
+            <div class="testi-form-row">
+              <label>Nombre<input id="testi-name" required type="text"/></label>
+              <label>Ciudad<input id="testi-city" required type="text"/></label>
+              <label>Rating
+                <select id="testi-rating">
+                  <option value="5">★★★★★ (5)</option>
+                  <option value="4">★★★★☆ (4)</option>
+                  <option value="3">★★★☆☆ (3)</option>
+                  <option value="2">★★☆☆☆ (2)</option>
+                  <option value="1">★☆☆☆☆ (1)</option>
+                </select>
+              </label>
+            </div>
+            <label>Comentario<textarea id="testi-text" required rows="3"></textarea></label>
+            <button class="btn btn-gold" type="submit">Enviar opinión</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="home-custom-sections"></div>
+</div>
+
+<!-- SHOP -->
+<div class="page" id="page-shop">
+  <section class="section">
+    <div class="container">
+      <div class="tabs" id="shop-tabs">
+        <button class="tab on" data-tab-type="all" type="button">Todos</button>
+        <button class="tab" data-tab-type="gender" data-tab-value="Mujer" type="button">Mujer</button>
+        <button class="tab" data-tab-type="gender" data-tab-value="Hombre" type="button">Hombre</button>
+        <button class="tab" data-tab-type="gender" data-tab-value="Unisex" type="button">Unisex</button>
+        <button class="tab tab-sale" data-tab-type="sale" type="button">En oferta</button>
+      </div>
+
+      <!-- Botón filtros mobile -->
+      <button class="mobile-filter-btn" id="mobile-filter-btn">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16" height="16"><line x1="4" y1="6" x2="11" y2="6"/><line x1="13" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="9" y2="12"/><line x1="11" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="13" y2="18"/><line x1="15" y1="18" x2="20" y2="18"/></svg>
+        Filtros
+      </button>
+      <div class="filter-overlay" id="filter-overlay"></div>
+
+      <div class="shop-layout">
+        <aside class="filters-wrap" id="filters-wrap">
+          <!-- Header visible solo en mobile -->
+          <div class="filter-mobile-header">
+            <span class="filter-mobile-title">Filtros</span>
+            <button class="filter-close-btn" id="filter-close-btn">✕</button>
+          </div>
+          <div class="filter-head"><span>Filtros</span><a class="btn btn-ghost btn-sm" href="#shop" id="shop-clear">Limpiar</a></div>
+          <div class="filter-group" id="filter-gender">
+            <div class="filter-group-label">Género</div>
+            <div class="filter-options">
+              <label class="fopt"><input type="checkbox" value="Mujer"/><span>Mujer</span></label>
+              <label class="fopt"><input type="checkbox" value="Hombre"/><span>Hombre</span></label>
+              <label class="fopt"><input type="checkbox" value="Unisex"/><span>Unisex</span></label>
+            </div>
+          </div>
+          <div class="filter-group">
+            <div class="filter-group-label">Marca</div>
+            <div class="filter-options" id="filter-brand"></div>
+          </div>
+          <div class="filter-group">
+            <div class="filter-group-label">Precio (RD$)</div>
+            <div class="price-row">
+              <input class="price-in" id="price-min" inputmode="numeric" placeholder="Mín"/>
+              <input class="price-in" id="price-max" inputmode="numeric" placeholder="Máx"/>
+            </div>
+            <div style="margin-top:10px">
+              <label class="fopt"><input id="filter-sale" type="checkbox"/><span>Solo en oferta</span></label>
+            </div>
+          </div>
+          <!-- Botón aplicar visible solo en mobile -->
+          <div class="filter-apply-btn">
+            <button class="btn btn-gold btn-block" id="filter-apply-btn-el">Ver resultados</button>
+          </div>
+        </aside>
+
+        <div class="shop-results">
+          <div class="search-wrap">
+            <span class="search-icon">🔎</span>
+            <input class="search-input" id="shop-search" placeholder="Buscar perfume o marca..."/>
+          </div>
+          <div class="sort-bar">
+            <div class="result-count" id="shop-count">0 productos</div>
+            <select class="sort-sel" id="shop-sort">
+              <option value="relevance">Relevancia</option>
+              <option value="new">Nuevos</option>
+              <option value="price_asc">Precio: menor a mayor</option>
+              <option value="price_desc">Precio: mayor a menor</option>
+            </select>
+          </div>
+          <div class="products-grid" id="shop-grid"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- OFFERS -->
+<div class="page" id="page-offers">
+  <section class="section">
+    <div class="container">
+      <div class="sec-header">
+        <div><div class="eyebrow">Ahorra hoy</div><h2 class="sec-title">Ofertas <em>especiales</em></h2></div>
+        <a class="btn btn-outline btn-sm" href="#shop">Ver catálogo →</a>
+      </div>
+      <p class="sec-sub">Esta página muestra solo productos en oferta.</p>
+    </div>
+  </section>
+</div>
+
+<!-- ABOUT -->
+<div class="page" id="page-about">
+  <section class="page-hero-sm" id="about-page-header">
+    <div class="container">
+      <div class="eyebrow" id="about-eyebrow-el">Conócenos</div>
+      <h2 class="sec-title" id="about-title-el">Sobre <em id="about-title2-el">nosotros</em></h2>
+      <div class="gold-line" id="about-goldline-el"></div>
+      <p class="sec-sub" id="about-subtitle-el" style="display:none"></p>
+    </div>
+  </section>
+  <div class="page-body" id="about-body"></div>
+</div>
+
+<!-- CART -->
+<div class="page" id="page-cart">
+  <section class="page-hero-sm">
+    <div class="container">
+      <div class="breadcrumb"><a href="#home">Inicio</a> / <span>Carrito</span></div>
+      <h1>Tu Carrito</h1>
+    </div>
+  </section>
+  <div class="page-body" style="max-width:100%;padding:0 0 80px">
+    <div class="container">
+      <div class="cart-page">
+        <div class="cart-left">
+          <div class="cart-items-page" id="cart-items-page"></div>
+          <div class="cart-page-actions">
+            <a class="btn btn-outline" href="#shop">← Seguir comprando</a>
+            <button class="btn btn-outline danger" id="cart-clear-page" type="button">Vaciar carrito</button>
+          </div>
+        </div>
+        <div class="cart-right">
+          <div class="order-summary">
+            <div class="os-title">Resumen del Pedido</div>
+            <div class="os-rows">
+              <div class="row"><span>Subtotal</span><strong id="cart-subtotal">RD$0</strong></div>
+              <div class="row"><span>Envío</span><strong id="cart-shipping">GRATIS 🧑‍🚚</strong></div>
+              <div class="row total"><span>Total</span><strong id="cart-total">RD$0</strong></div>
+            </div>
+            <a class="btn btn-dark os-cta" href="#checkout" id="cart-to-checkout">FINALIZAR COMPRA →</a>
+            <div class="muted os-note">El pago se coordina por WhatsApp</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CHECKOUT -->
+<div class="page" id="page-checkout">
+  <section class="page-hero-sm">
+    <div class="container">
+      <div class="breadcrumb"><a href="#home">Inicio</a> / <a href="#cart">Carrito</a> / <span>Checkout</span></div>
+      <h1>Finalizar compra</h1>
+    </div>
+  </section>
+  <div class="page-body" style="max-width:100%;padding:0 0 80px">
+    <div class="container">
+      <div class="checkout-page">
+        <div class="checkout-form content-card">
+          <div class="checkout-title">Datos para coordinar</div>
+          <div class="checkout-grid">
+            <label>Nombre<input id="co-name" placeholder="Tu nombre" type="text"/></label>
+            <label>Teléfono<input id="co-phone" placeholder="809..." type="text"/></label>
+            <label>Método entrega
+              <select id="co-delivery">
+                <option value="Domicilio">Domicilio</option>
+                <option value="Recoger">Recoger en tienda</option>
+              </select>
+            </label>
+            <label>Notas<textarea id="co-notes" placeholder="Color, preferencia, horario..." rows="2"></textarea></label>
+          </div>
+
+          <!-- Dirección + Mapa -->
+          <div id="co-delivery-section" style="margin-top:14px">
+            <label style="font-weight:600;font-size:.85rem;display:block;margin-bottom:6px">📍 Dirección de entrega</label>
+            <input id="co-address" class="form-ctrl" placeholder="Selecciona en el mapa o escribe tu dirección..." type="text" style="margin-bottom:10px"/>
+
+            <div style="border-radius:14px;overflow:hidden;border:1px solid var(--border);margin-bottom:8px">
+              <div id="checkout-map" style="height:280px;width:100%;background:#f0f0f0"></div>
+            </div>
+            <div style="font-size:.74rem;color:var(--mid);margin-bottom:6px">
+              📌 Toca el mapa para marcar tu ubicación exacta — la dirección se cargará automáticamente.
+            </div>
+            <!-- Costo de envío estimado -->
+            <div id="co-shipping-info" style="display:none;padding:10px 14px;background:rgba(201,169,110,.08);border:1px solid rgba(201,169,110,.25);border-radius:10px;font-size:.82rem;margin-top:6px">
+              <span id="co-shipping-label">🚗 Calculando envío...</span>
+            </div>
+          </div>
+
+          <div class="checkout-actions" style="margin-top:16px">
+            <a class="btn btn-outline" href="#cart">← Volver al carrito</a>
+            <a class="btn btn-wa" id="checkout-wa" rel="noopener" target="_blank">Concluir por WhatsApp</a>
+          </div>
+        </div>
+        <div class="checkout-summary content-card">
+          <div class="os-title">Vista previa del mensaje</div>
+          <div class="muted" id="wa-preview" style="white-space:pre-wrap"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PRODUCT PAGE -->
+<div class="page" id="page-product">
+  <section class="page-hero-sm">
+    <div class="container">
+      <div class="breadcrumb"><a href="#home">Inicio</a> / <a href="#shop">Tienda</a> / <span>Producto</span></div>
+      <h1 id="product-page-title">Producto</h1>
+    </div>
+  </section>
+  <div class="page-body" style="max-width:100%;padding:0 0 80px">
+    <div class="container">
+      <div id="product-page-host"></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- PAGE: SPACE (dynamic, rendered by spaces router) -->
+<div class="page" id="page-space">
+  <div id="space-page-host" style="min-height:60vh"></div>
+</div>
+
+<!-- BOTTOM NAV MOBILE (legacy - hidden by v88) -->
+<nav class="mobile-bottom-nav" id="mobile-bottom-nav" style="display:none"></nav>
+
+<!-- BOTTOM NAV v88 — Amazon/app style -->
+<nav class="mobile-bottom-nav-v88" id="mobile-bottom-nav-v88">
+  <a href="#home" id="bnav88-home" class="bnav-v88-link active">
+    <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" width="22" height="22">
+      <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+    </svg>
+    <span>Inicio</span>
+  </a>
+  <a href="#shop" id="bnav88-shop" class="bnav-v88-link">
+    <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" width="22" height="22">
+      <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>
+    </svg>
+    <span>Tienda</span>
+  </a>
+  <a href="#offers" id="bnav88-offers" class="bnav-v88-link">
+    <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" width="22" height="22">
+      <path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/>
+    </svg>
+    <span>Ofertas</span>
+  </a>
+  <a href="#about" id="bnav88-about" class="bnav-v88-link">
+    <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" width="22" height="22">
+      <circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/>
+    </svg>
+    <span>Info</span>
+  </a>
+  <a href="#cart" id="bnav88-cart" class="bnav-v88-link" style="position:relative">
+    <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" width="22" height="22">
+      <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/>
+    </svg>
+    <span class="bnav-v88-badge" id="bnav88-badge" data-count="0">0</span>
+    <span>Carrito</span>
+  </a>
+</nav>
+
+<footer class="site-footer" id="site-footer">
+  <div class="container">
+    <div id="footer-columns-host"></div>
+    <div class="footer-bottom" id="footer-bottom-bar">
+      <div id="footer-copyright">© <span id="year"></span> Onne Store RD</div>
+      <div id="footer-admin-link"><a href="admin.html" style="color:transparent;font-size:0;user-select:none" id="admin-link">·</a></div>
+    </div>
+  </div>
+</footer>
+<!-- store.js bundle -->
+
+<script>
+// ── Header scroll shadow ─────────────────────────────────────
+(function(){
+  const header = document.getElementById('site-header');
+  if(!header) return;
+  function onScroll(){ header.classList.toggle('scrolled', window.scrollY > 10); }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+})();
+
+// ── Mobile filter panel ──────────────────────────────
+(function(){
+  const btn     = document.getElementById('mobile-filter-btn');
+  const panel   = document.getElementById('filters-wrap');
+  const overlay = document.getElementById('filter-overlay');
+  const closeBtn= document.getElementById('filter-close-btn');
+  const applyBtn= document.getElementById('filter-apply-btn-el');
+
+  function openFilters(){
+    panel.classList.add('mobile-open');
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeFilters(){
+    panel.classList.remove('mobile-open');
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  if(btn)      btn.addEventListener('click', openFilters);
+  if(closeBtn) closeBtn.addEventListener('click', closeFilters);
+  if(applyBtn) applyBtn.addEventListener('click', closeFilters);
+  if(overlay)  overlay.addEventListener('click', closeFilters);
+
+  // Cerrar filtros automáticamente cuando se seleccione un tab en shop
+  document.addEventListener('click', function(e){
+    if(e.target.closest('#page-shop .tabs .tab')){
+      closeFilters();
+    }
+  });
+})();
+
+// ── Mobile nav: cerrar al seleccionar link ──────────
+(function(){
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobile-nav');
+
+  // Delegated: cualquier <a> dentro del mobile-nav cierra el menú
+  if(mobileNav){
+    mobileNav.addEventListener('click', function(e){
+      var link = e.target.closest('a');
+      if(link){
+        mobileNav.classList.remove('open');
+        if(hamburger) hamburger.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
+  }
+})();
+
+// ── Bottom nav active state ──────────────────────────
+(function(){
+  // Legacy nav map (kept for backward compat)
+  var map = {
+    home:     'bnav-home',
+    shop:     'bnav-shop',
+    offers:   'bnav-offers',
+    cart:     'bnav-cart',
+    checkout: 'bnav-cart',
+    product:  'bnav-shop',
+    about:    'bnav-home'
+  };
+  // v88 nav map
+  var map88 = {
+    home:     'bnav88-home',
+    shop:     'bnav88-shop',
+    offers:   'bnav88-offers',
+    cart:     'bnav88-cart',
+    checkout: 'bnav88-cart',
+    product:  'bnav88-shop',
+    about:    'bnav88-about'
+  };
+  function update(){
+    var hash = (location.hash.slice(1) || 'home').split('/')[0];
+    // Legacy
+    Object.values(map).forEach(function(id){
+      var el = document.getElementById(id);
+      if(el) el.classList.remove('active');
+    });
+    var targetId = map[hash] || 'bnav-home';
+    var el = document.getElementById(targetId);
+    if(el) el.classList.add('active');
+    // v88
+    var nav88 = document.getElementById('mobile-bottom-nav-v88');
+    if(nav88){
+      nav88.querySelectorAll('.bnav-v88-link').forEach(function(l){ l.classList.remove('active'); });
+      var t88 = map88[hash] || 'bnav88-home';
+      var el88 = document.getElementById(t88);
+      if(el88) el88.classList.add('active');
+    }
+    // Sync cart badge
+    var badge88 = document.getElementById('bnav88-badge');
+    var origBadge = document.getElementById('cart-badge');
+    if(badge88 && origBadge){
+      badge88.textContent = origBadge.textContent || '0';
+      badge88.dataset.count = origBadge.textContent || '0';
+    }
+  }
+  window.addEventListener('hashchange', update);
+  window.addEventListener('load', update);
+  // Observe cart badge mutations
+  var cb = document.getElementById('cart-badge');
+  if(cb) new MutationObserver(function(){
+    var b88 = document.getElementById('bnav88-badge');
+    if(b88){ b88.textContent = cb.textContent||'0'; b88.dataset.count = cb.textContent||'0'; }
+  }).observe(cb, {childList:true,characterData:true,subtree:true});
+})();
+
+// ── Real viewport height (fix iOS toolbar) ──────────
+function setVH(){
+  document.documentElement.style.setProperty('--real-vh', (window.innerHeight * 0.01) + 'px');
+}
+window.addEventListener('resize', setVH);
+setVH();
+</script>
+
+<!-- OVERLAY & MODAL -->
+<div class="overlay" hidden id="overlay"></div>
+<div class="modal" hidden id="product-modal">
+  <div class="modal-card">
+    <button aria-label="Cerrar" class="modal-close" id="pm-close">×</button>
+    <div class="pm-body" id="pm-body"></div>
+  </div>
+</div>
+
+<script src="store.js"></script>
+<script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+
+  <!-- ── WhatsApp Float Button (fully configurable via admin) ── -->
+  <div id="wa-float-btn" role="button" tabindex="0"
+     style="position:fixed;bottom:24px;right:20px;z-index:9999;display:flex;align-items:center;justify-content:center;gap:8px;
+            background:#25D366;color:#fff;border-radius:50px;padding:12px 18px 12px 14px;
+            cursor:pointer;box-shadow:0 4px 18px rgba(37,211,102,.45);
+            font-weight:700;font-size:.88rem;transition:transform .18s,box-shadow .18s,border-radius .18s">
+    <!-- icon slot: shows WA svg OR custom img OR emoji -->
+    <span id="wa-float-icon-slot" style="display:flex;align-items:center;justify-content:center;flex-shrink:0;line-height:1">
+      <svg id="wa-float-svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+      <img id="wa-float-custom-img" src="" alt="" style="display:none;width:26px;height:26px;object-fit:contain;border-radius:4px"/>
+      <span id="wa-float-emoji" style="display:none;font-size:22px;line-height:1"></span>
+    </span>
+    <span class="wa-float-label" id="wa-float-label-text">WhatsApp</span>
+  </div>
+
+</body>
+</html>

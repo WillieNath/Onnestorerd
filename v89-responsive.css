@@ -1,0 +1,409 @@
+/* ═══════════════════════════════════════════════════════════════
+   ONNE STORE RD — v89 Responsive System
+   Complete responsive overhaul for ALL devices:
+   · Foldables (Zenbook Fold, Galaxy Fold)
+   · Smart displays (Nest Hub, Nest Hub Max, Echo Show)
+   · Tablets (iPad, iPad Pro, Galaxy Tab, Surface)
+   · Ultra-wide monitors
+   · Landscape phones
+   
+   Strategy: fluid-first approach with strategic breakpoints
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ─────────────────────────────────────
+   0. FLUID FOUNDATION
+   ───────────────────────────────────── */
+
+/* Container: fluid with max-width */
+.container {
+  max-width: 1380px;
+  margin: 0 auto;
+  padding: 0 clamp(16px, 3vw, 32px);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Section spacing: fluid */
+.section    { padding: clamp(32px, 6vw, 80px) 0; }
+.section-sm { padding: clamp(16px, 3vw, 40px) 0; }
+
+
+/* ─────────────────────────────────────
+   1. HERO / BANNER — Universal Fix
+   ───────────────────────────────────── */
+
+/* Desktop hero: fluid height, capped */
+.hero {
+  min-height: clamp(500px, 80vh, 88vh);
+}
+
+/* Hero title: proper fluid scaling */
+.hero-title {
+  font-size: clamp(2rem, 4.5vw, 5rem) !important;
+}
+
+/* Hero description: fluid */
+.hero-desc {
+  font-size: clamp(.88rem, 1.2vw, 1.05rem);
+  max-width: min(420px, 85%);
+}
+
+/* Hero CTA buttons: prevent overflow */
+.hero-ctas {
+  display: flex;
+  gap: clamp(8px, 1.5vw, 14px);
+  flex-wrap: wrap;
+}
+.hero-ctas .btn {
+  padding: clamp(10px, 1.2vw, 14px) clamp(16px, 2vw, 28px);
+  font-size: clamp(.72rem, .9vw, .82rem);
+  white-space: nowrap;
+}
+
+/* Proof bar: prevent overflow on mid screens */
+.hero-proof-bar-inner {
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: clamp(.65rem, .8vw, .78rem);
+}
+
+/* Hero image: always cover properly */
+.hero-img {
+  width: 50%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Hero scroll button: auto-hide on short viewports */
+.hero-scroll {
+  display: var(--hero-scroll-display, flex);
+}
+
+
+/* ─────────────────────────────────────
+   2. SMART DISPLAYS (Nest Hub, Echo Show)
+   Landscape-locked, ~1024x600 to ~1280x800
+   Short height, wide viewport
+   ───────────────────────────────────── */
+
+@media (min-width: 800px) and (max-height: 620px) {
+  /* Nest Hub: 1024×600 */
+  .hero {
+    min-height: 100vh !important;
+    max-height: 100vh !important;
+  }
+  .hero-inner { max-width: 480px; }
+  .hero-title { font-size: clamp(1.8rem, 4vw, 2.8rem) !important; margin-bottom: 12px !important; }
+  .hero-desc  { font-size: .88rem; margin-bottom: 20px; }
+  .hero-label { margin-bottom: 16px; padding: 5px 12px; font-size: .62rem; }
+  .hero-ctas .btn { padding: 9px 18px; font-size: .72rem; }
+  .hero-scroll { display: none !important; }
+  .hero-proof-bar { padding: 8px 20px 12px; }
+  .hero-proof-bar-inner { font-size: .68rem; }
+  .hero::before { width: 50%; }
+
+  .section { padding: 32px 0; }
+  .section-sm { padding: 16px 0; }
+  .sec-title { font-size: clamp(1.3rem, 3vw, 1.8rem); }
+
+  .features-grid { gap: 0; }
+  .feature-item { padding: 12px 10px; }
+
+  /* Products: 4 columns on smart display */
+  .products-grid { grid-template-columns: repeat(4, 1fr); gap: 12px; }
+
+  body { padding-bottom: 0 !important; }
+  .mobile-bottom-nav, .mobile-bottom-nav-v88 { display: none !important; }
+}
+
+@media (min-width: 1000px) and (max-height: 820px) {
+  /* Nest Hub Max: 1280×800 */
+  .hero { min-height: min(88vh, 780px) !important; }
+  .hero-title { font-size: clamp(2.2rem, 4vw, 3.5rem) !important; }
+  .hero-scroll { bottom: 16px; }
+  .hero-ctas .btn { padding: 10px 20px; }
+}
+
+
+/* ─────────────────────────────────────
+   3. FOLDABLE DEVICES
+   Asus Zenbook Fold: ~853×1280 (folded portrait)
+   Galaxy Z Fold: ~884×1104 unfolded
+   ───────────────────────────────────── */
+
+/* Narrow-ish landscape with good height = foldable inner screen */
+@media (min-width: 769px) and (max-width: 1024px) and (min-height: 900px) {
+  .hero {
+    min-height: clamp(50vh, 60vh, 70vh) !important;
+  }
+  .hero-inner { max-width: 55%; }
+  .hero-title { font-size: clamp(2.2rem, 4.5vw, 3.2rem) !important; }
+  .hero-img { width: 48%; }
+  .hero::before { width: 52%; }
+
+  .products-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 14px; }
+  .features-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+
+/* ─────────────────────────────────────
+   4. TABLET PORTRAIT (768-1024px)
+   iPad, iPad Air, Galaxy Tab, Surface Go
+   ───────────────────────────────────── */
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  /* Hero adjustments for tablets */
+  .hero {
+    min-height: clamp(55vh, 70vh, 80vh);
+  }
+  .hero-content { padding: 0 clamp(16px, 3vw, 24px); }
+  .hero-inner { max-width: min(500px, 60%); }
+  .hero-title { font-size: clamp(2rem, 4.2vw, 3rem) !important; }
+  .hero-desc  { font-size: .92rem; }
+  .hero-label { font-size: .62rem; padding: 5px 12px; margin-bottom: 18px; }
+  .hero-ctas .btn { padding: 10px 18px; font-size: .74rem; }
+  .hero-img { width: 48%; opacity: .75; }
+  .hero::before { width: 52%; }
+  .hero-scroll { bottom: 20px; }
+
+  /* Products: 3 columns on tablet */
+  .products-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 14px;
+  }
+
+  /* Features strip */
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+  }
+
+  /* PDP layout */
+  .pdp-layout { gap: 24px; }
+
+  /* Footer */
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
+
+  /* Shop layout: sidebar narrower */
+  .shop-layout { grid-template-columns: 190px 1fr; gap: 18px; }
+
+  /* Sections */
+  .section { padding: 48px 0; }
+  .sec-title { font-size: clamp(1.5rem, 3.5vw, 2rem); }
+}
+
+
+/* ─────────────────────────────────────
+   5. TABLET LANDSCAPE (1025-1366px)
+   iPad landscape, Surface Pro, larger tablets
+   ───────────────────────────────────── */
+
+@media (min-width: 1025px) and (max-width: 1366px) {
+  .hero { min-height: clamp(70vh, 80vh, 88vh); }
+  .hero-inner { max-width: min(520px, 45%); }
+  .hero-title { font-size: clamp(2.4rem, 3.8vw, 4rem) !important; }
+  .hero-img { width: 50%; }
+
+  .products-grid { gap: 16px; }
+  .container { padding: 0 clamp(20px, 2.5vw, 32px); }
+}
+
+
+/* ─────────────────────────────────────
+   6. MOBILE LANDSCAPE (height < 500px)
+   Phone turned sideways
+   ───────────────────────────────────── */
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero {
+    min-height: 100vh !important;
+    max-height: 100vh !important;
+  }
+  .hero-content { padding: 0 20px; }
+  .hero-inner { max-width: 50%; }
+  .hero-title { font-size: clamp(1.4rem, 3.5vw, 2.2rem) !important; margin-bottom: 8px !important; }
+  .hero-desc  { font-size: .82rem; margin-bottom: 12px; }
+  .hero-label { display: none; }
+  .hero-ctas .btn { padding: 7px 14px; font-size: .68rem; }
+  .hero-scroll { display: none !important; }
+  .hero-proof-bar { display: none; }
+
+  .section { padding: 24px 0; }
+  .features-strip { display: none; }
+
+  /* Keep nav visible */
+  .mobile-bottom-nav-v88 { height: 48px !important; }
+  .mobile-bottom-nav-v88 .bnav-v88-link span { display: none; }
+  .mobile-bottom-nav-v88 .bnav-v88-link svg { width: 20px; height: 20px; }
+
+  body { padding-bottom: 52px !important; }
+}
+
+
+/* ─────────────────────────────────────
+   7. SMALL MOBILE FIXES (≤380px)
+   iPhone SE, Galaxy A series, older phones
+   ───────────────────────────────────── */
+
+@media (max-width: 380px) {
+  .hero-ctas { flex-direction: column; gap: 8px; }
+  .hero-ctas .btn { width: 100%; text-align: center; padding: 10px 14px; font-size: .72rem; }
+
+  .sec-title { font-size: 1.3rem; }
+  .sec-header .btn-sm { font-size: .58rem; padding: 6px 10px; }
+
+  .products-grid { gap: 6px; }
+  .pc-body { padding: 8px 8px 8px; }
+  .pc-name { font-size: .8rem; }
+  .pc-price-now { font-size: .88rem; }
+
+  .container { padding: 0 12px; }
+}
+
+
+/* ─────────────────────────────────────
+   8. ULTRA-WIDE (≥1800px)
+   ───────────────────────────────────── */
+
+@media (min-width: 1800px) {
+  .hero-content { max-width: 1500px; }
+  .hero-inner { max-width: 600px; }
+  .products-grid { grid-template-columns: repeat(5, 1fr); gap: 24px; }
+}
+
+
+/* ─────────────────────────────────────
+   9. MOBILE HERO BUTTONS FIX (≤768px)
+   Make circular buttons scale properly
+   ───────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .hero-mob-circle {
+    width: clamp(44px, 12vw, 62px) !important;
+    height: clamp(44px, 12vw, 62px) !important;
+  }
+  .hero-mob-circle svg {
+    width: clamp(20px, 5.5vw, 28px);
+    height: clamp(20px, 5.5vw, 28px);
+  }
+
+  /* Title: fluid on mobile */
+  #hero-mob-title {
+    font-size: clamp(1.2rem, 5.5vw, 2rem) !important;
+    max-width: 82% !important;
+  }
+
+  /* Desc: fluid */
+  #hero-mob-desc {
+    font-size: clamp(.72rem, 2.8vw, .88rem) !important;
+    max-width: 80% !important;
+  }
+
+  /* Proof bar: prevent overflow */
+  .hero-mob-proof-bar {
+    font-size: clamp(.6rem, 2.2vw, .72rem) !important;
+    max-width: 90% !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+/* Very small phones — stack buttons differently */
+@media (max-width: 350px) {
+  .hero-mob-circle {
+    width: 42px !important;
+    height: 42px !important;
+  }
+  .hero-mob-circle svg { width: 18px; height: 18px; }
+
+  #hero-mob-title { font-size: 1.1rem !important; }
+  #hero-mob-desc  { font-size: .7rem !important; }
+}
+
+
+/* ─────────────────────────────────────
+   10. CAROUSEL RESPONSIVE FIXES
+   ───────────────────────────────────── */
+
+/* Tablet: 3 cards */
+@media (min-width: 769px) and (max-width: 1100px) {
+  .carousel-track .product-card {
+    width: calc((100% - 36px) / 3) !important;
+    min-width: calc((100% - 36px) / 3) !important;
+    max-width: calc((100% - 36px) / 3) !important;
+  }
+}
+
+
+/* ─────────────────────────────────────
+   11. ADMIN PANEL RESPONSIVE
+   ───────────────────────────────────── */
+
+/* Spaces editor: stack on smaller screens */
+@media (max-width: 900px) {
+  .sp-editor-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .sp-editor-grid > div:last-child {
+    position: static !important;
+  }
+}
+
+/* Admin on tablet */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .admin-sidebar { width: 220px; }
+  .admin-main { margin-left: 220px; }
+  .admin-content { padding: 14px; }
+}
+
+/* Analytics v88 cards: tablet fix */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .analytics-kpis-row.row-1 { grid-template-columns: repeat(3, 1fr); }
+  .analytics-kpis-row.row-2 { grid-template-columns: repeat(3, 1fr); }
+  .saas-kpi-grid { grid-template-columns: repeat(3, 1fr) !important; }
+}
+
+
+/* ─────────────────────────────────────
+   12. ABOUT / TESTIMONIALS / FOOTER
+   ───────────────────────────────────── */
+
+/* About grid: fluid */
+.abt-grid {
+  grid-template-columns: clamp(140px, 20vw, 200px) 1fr;
+}
+
+/* Testimonials grid: tablet fix */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .testi-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 16px; }
+}
+
+/* Footer: tablet */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .footer-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+}
+
+
+/* ─────────────────────────────────────
+   13. CHECKOUT / CART RESPONSIVE
+   ───────────────────────────────────── */
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .checkout-grid { grid-template-columns: 1fr; }
+  .cart-drawer.as-page { border-radius: 14px; }
+}
+
+
+/* ─────────────────────────────────────
+   14. PRINT MEDIA QUERY
+   ───────────────────────────────────── */
+
+@media print {
+  .hero, .mobile-bottom-nav-v88, .site-header, .chatbot-container,
+  #wa-float-btn, .hero-scroll { display: none !important; }
+  body { padding: 0 !important; }
+}
+
+
+/* ═══════════════════════════════════════════════════
